@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cowhealthnewregion-dev-152429-authRole",
+      "UnauthRoleArn": "arn:aws:iam::014765400543:role/amplify-cowhealthnewregion-dev-152429-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::014765400543:role/amplify-cowhealthnewregion-dev-152429-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-cowhealthnewregion-dev-152429-deployment",
+      "UnauthRoleName": "amplify-cowhealthnewregion-dev-152429-unauthRole",
+      "StackName": "amplify-cowhealthnewregion-dev-152429",
+      "StackId": "arn:aws:cloudformation:us-east-1:014765400543:stack/amplify-cowhealthnewregion-dev-152429/fb7fbf50-03b2-11ef-b5ce-0affea62c5b7",
+      "AmplifyAppId": "d25jwf5fbmnkqh"
+    },
+    "categories": {
+      "auth": {
+        "cowhealthnewregionbde2ff27": {}
+      }
+    }
+  }
+}
