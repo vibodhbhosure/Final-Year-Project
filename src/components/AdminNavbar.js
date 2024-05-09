@@ -4,6 +4,10 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
 import './Navb.css';
 
+const handleprint = () => {
+  window.print(); // This opens the browser's print dialog
+};
+
 function Navb() {
   const handleLogout = async () => {
     try {
@@ -32,7 +36,7 @@ function Navb() {
             <Nav.Link disabled> </Nav.Link>
             {/* Report Dropdown */}
             <NavDropdown title="Report" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Download Report</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.1" onClick={handleprint}>Download Report</NavDropdown.Item>
             </NavDropdown>
             {/* Space between links */}
             <Nav.Link disabled> </Nav.Link>

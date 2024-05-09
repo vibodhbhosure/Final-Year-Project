@@ -146,10 +146,10 @@ function App() {
       </Container>
       <Container>
         <Row>
-          <Col md="6">
+          {/* <Col md="6">
             <h1>Bar Chart</h1>
             <BarChart config={barChartConfig} data={barChartData} />
-          </Col>
+          </Col> */}
           <Col md="6">
             <h1>Pie Chart</h1>
             <StandingLyingChart />
