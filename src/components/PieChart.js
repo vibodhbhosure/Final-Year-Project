@@ -31,7 +31,7 @@ const PieChart = ({ data }) => {
   }, [data]);
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+    <div style={{ maxWidth: '750px', maxHeight: '300px', marginBottom: '9.375rem' }}>
       <canvas ref={chartRef} />
     </div>
   );

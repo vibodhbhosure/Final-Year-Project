@@ -17,7 +17,11 @@ const BarChart = ({ config, data }) => {
     };
   }, [config, data]);
 
-  return <canvas ref={chartRef} />;
+  return (
+    <div style={{ maxWidth: '750px', maxHeight: '300px', marginBottom: '9.375rem' }}>
+      <canvas ref={chartRef} />
+    </div>
+  )
 };
 
 export default BarChart;

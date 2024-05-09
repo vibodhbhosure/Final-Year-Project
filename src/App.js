@@ -17,7 +17,10 @@ import HumiditySensor from "./components/humidityData";
 import AmbientSensor from "./components/ambientTemp";
 import BarChart from "./components/BarChart";
 import PieChart from "./components/PieChart";
-import { ApexChart } from "./components/ApexChart";
+import { ApexChartHumidity } from "./components/ApexChartHumidity";
+import { ApexChartTemperature } from "./components/ApexChartTemperature";
+import { ApexChartAmbient } from "./components/ApexChartAmbient";
+import Mlpred from "./components/mlpred";
 
 Amplify.configure(awsconfig);
 
@@ -118,7 +121,7 @@ function App() {
         <Row className="p-3 justify-content-md-center">
           <Col md="auto">
             {" "}
-            <Sensors name="Temperature" unit="°C" />{" "}
+            <Sensors name="temperature" unit="°C" />{" "}
           </Col>
           <Col md="auto">
             {" "}
@@ -131,6 +134,13 @@ function App() {
           <Col md="auto">
             {" "}
             <AmbientSensor name="AmbientTemperature" unit="°F" />{" "}
+          </Col>
+
+        </Row>
+        <Row className="p-3 justify-content-md-center">
+          <Col md="auto">
+            {" "}
+            <Mlpred name="prediction" />{" "}
           </Col>
         </Row>
       </Container>
@@ -148,8 +158,13 @@ function App() {
       </Container>
       <Container>
         <Row>
-        <ApexChart args={sampleData} />
-
+          <ApexChartHumidity args={sampleData} />
+        </Row>
+        <Row>
+          <ApexChartTemperature args={sampleData} />
+        </Row>
+        <Row>
+          <ApexChartAmbient args={sampleData} />
         </Row>
       </Container>
     </div>

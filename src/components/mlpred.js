@@ -2,23 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { PubSub } from 'aws-amplify';
 import Card from 'react-bootstrap/Card';
 
-function XYZSensors() {
+function Mlpred() {
     const [sensorData, setSensorData] = useState({
-        xaxis: 0,
-        yaxis: 0,
-        zaxis: 0,
+        prediction: "",
     });
 
     useEffect(() => {
-        const subscription = PubSub.subscribe('device/12/data').subscribe({
+        const subscription = PubSub.subscribe('device/12/prediction').subscribe({
             next: data => {
                 try {
                     const parsedData = typeof data.value === 'object' ? data.value : JSON.parse(data.value);
-                    const { xaxis, yaxis, zaxis } = parsedData;
+                    const { prediction } = parsedData;
                     setSensorData({
-                        xaxis: xaxis || 0,
-                        yaxis: yaxis || 0,
-                        zaxis: zaxis || 0,
+                        prediction: prediction || "Not Available"
                     });
                 } catch (error) {
                     console.log("Error parsing data:", error);
@@ -41,11 +37,9 @@ function XYZSensors() {
         <div className="Sensor">
             <Card style={{ width: '18rem' }}>
                 <Card.Body>
-                    <Card.Title>Accelerometer</Card.Title>
+                    <Card.Title>Physiological Status - Predicted</Card.Title>
                     <Card.Text>
-                        X-axis: {Number(sensorData.xaxis).toFixed(2)}<br />
-                        Y-axis: {Number(sensorData.yaxis).toFixed(2)}<br />
-                        Z-axis: {Number(sensorData.zaxis).toFixed(2)}
+                        Status: {sensorData.prediction}
                     </Card.Text>
                 </Card.Body>
             </Card>
@@ -62,8 +56,9 @@ function XYZSensors() {
                 `
             }
             </style>
+
         </div>
     );
 }
 
-export default XYZSensors;
+export default Mlpred;
