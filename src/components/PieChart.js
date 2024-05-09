@@ -1,40 +1,55 @@
-import React, { useEffect, useRef } from 'react';
-import Chart from 'chart.js/auto';
+import React, { useState, useEffect } from 'react';
+import { Pie } from 'react-chartjs-2';
 
-const PieChart = ({ data }) => {
-  const chartRef = useRef(null);
-  const chartInstance = useRef(null);
+const StandingLyingChart = () => {
+  const [chartData, setChartData] = useState({
+    labels: ['Standing Time', 'Lying Time'],
+    datasets: [
+      {
+        label: 'Time (in minutes)',
+        data: [1, 1], // Initial data for standing and lying time
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.5)', // Red color for standing time
+          'rgba(54, 162, 235, 0.5)', // Blue color for lying time
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  });
 
   useEffect(() => {
-    if (!chartRef.current || !data) return;
-
-    if (chartInstance.current) {
-      chartInstance.current.data.labels = data.labels;
-      chartInstance.current.data.datasets = data.datasets;
-      chartInstance.current.update();
-    } else {
-      const ctx = chartRef.current.getContext('2d');
-      chartInstance.current = new Chart(ctx, {
-        type: 'pie',
-        data: data,
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'bottom',
-            },
-          },
-        },
+    // Fetch standing and lying time data from your API
+    fetch('https://jc14ws0h94.execute-api.us-east-1.amazonaws.com/default/todayStandLy?deviceId=12') // Update with your API endpoint
+      .then(response => response.json())
+      .then(data => {
+        if (data) {
+          // Update chart data with fetched values
+          setChartData(prevChartData => ({
+            ...prevChartData,
+            datasets: [
+              {
+                ...prevChartData.datasets[0],
+                data: [data.standing_time, data.lying_time],
+              },
+            ],
+          }));
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
       });
-    }
-  }, [data]);
+  }, []);
 
   return (
-    <div style={{ maxWidth: '750px', maxHeight: '300px', marginBottom: '9.375rem' }}>
-      <canvas ref={chartRef} />
+    <div>
+      <h2>Standing and Lying Time</h2>
+      <Pie data={chartData} style={{ maxWidth: '750px', maxHeight: '300px', marginBottom: '9.375rem' }} />
     </div>
   );
 };
 
-export default PieChart;
+export default StandingLyingChart;

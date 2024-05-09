@@ -16,7 +16,7 @@ import XYZSensors from "./components/accel";
 import HumiditySensor from "./components/humidityData";
 import AmbientSensor from "./components/ambientTemp";
 import BarChart from "./components/BarChart";
-import PieChart from "./components/PieChart";
+import StandingLyingChart from "./components/PieChart";
 import { ApexChartHumidity } from "./components/ApexChartHumidity";
 import { ApexChartTemperature } from "./components/ApexChartTemperature";
 import { ApexChartAmbient } from "./components/ApexChartAmbient";
@@ -152,7 +152,7 @@ function App() {
           </Col>
           <Col md="6">
             <h1>Pie Chart</h1>
-            <PieChart data={pieChartData} />
+            <StandingLyingChart />
           </Col>
         </Row>
       </Container>

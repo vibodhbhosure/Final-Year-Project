@@ -19,7 +19,7 @@ const BarChart = ({ config, data }) => {
 
   return (
     <div style={{ maxWidth: '750px', maxHeight: '300px', marginBottom: '9.375rem' }}>
-      <canvas ref={chartRef} />
+      <canvas ref={chartRef} />;
     </div>
   )
 };
